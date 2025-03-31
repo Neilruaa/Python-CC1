@@ -41,7 +41,7 @@ def extract_keys_and_map():
     zucchini jackfruit gooseberry durian waxberry wildberry echo nut cherry
     quandong lychee blackberry huckleberry amber mandarin xigua quandong banana
     mango
-    """.split()
+    """.lower().split()
     
     global mots_remplissage
     mots_remplissage = {
@@ -68,7 +68,8 @@ def encode_message(message, reverse_mapping, mots_remplissage):
     for i in message.upper():
         if i in reverse_mapping:
             encoded_words.append(reverse_mapping[i])
-            encoded_words.append(random.choice(list(mots_remplissage)))
+            for j in range(random.randint(1, 10)): 
+                encoded_words.append(random.choice(list(mots_remplissage)))
     
     encoded_text = " ".join(encoded_words)
     print("Message encodé :", encoded_text)
