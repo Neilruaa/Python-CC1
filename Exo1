@@ -34,6 +34,7 @@ def extract_keys_and_map():
     return mapping
 
 def decode_message(file_path, mapping):
+    file_path = file_path.strip("'")
     if not os.path.exists(file_path):
         print("Le fichier n'existe pas.")
         return
@@ -48,6 +49,6 @@ def decode_message(file_path, mapping):
 mapping = extract_keys_and_map()
 print("clés =", mapping)
 print('\r')
-file_path = input("Entrez le chemin du fichier texte à décoder : ")
+file_path = input("Entrez le chemin du fichier texte à décoder : ").strip("'")
 print('\r')
 decode_message(file_path, mapping)
