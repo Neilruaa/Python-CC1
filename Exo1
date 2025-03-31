@@ -40,7 +40,7 @@ def extract_keys_and_map():
     zucchini jackfruit gooseberry durian waxberry wildberry echo nut cherry
     quandong lychee blackberry huckleberry amber mandarin xigua quandong banana
     mango
-    """.split()
+    """.lower().split()
     
     remplissage = {
         'rhubarb', 'quince', 'watermelon', 'ximenia', 'nut', 'zucchini', 'blackberry', 'vine', 'cranberry',
@@ -54,7 +54,8 @@ def extract_keys_and_map():
         'mulberry', 'kumquat', 'peach', 'feijoa'
     }
     
-    cles = sorted(set(ancien_message) - remplissage)
+    global cles
+    cles = sorted(set(ancien_message) - remplissage) 
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     mapping = {cles[i]: alphabet[i] for i in range(len(cles)) if i < len(alphabet)}
 
@@ -74,6 +75,7 @@ def decode_message(file_path, mapping):
 
 
 mapping = extract_keys_and_map()
+print(cles)
 print("clés =", mapping)
 print('\r')
 file_path = input("Entrez le chemin du fichier texte à décoder : ").strip("'")
