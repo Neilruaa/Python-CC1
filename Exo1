@@ -1,0 +1,53 @@
+import os
+
+def extract_keys_and_map():
+    ancien_message = """
+    Strawberry quince olive fig bliss peach ximenia victoria grape kiwi cherry
+    feijoa cloud fig nectarine guava blackberry papaya kumquat eggplant watermelon
+    blackberry strawberry rhubarb lime feijoa eggplant ice apricot nutmeg tamarillo
+    ugni victoria victoria huckleberry yellow zest elderflower zucchini nebula
+    apricot ugly jackfruit ugli raspberry zinfandel feijoa vanilla ivory ugli
+    quandary ximenia blackberry tamarind quince kale avocado oasis eggplant jujube
+    elderberry mulberry raspberry elderberry feijoa nut abbey kiwi jackfruit ugli
+    yuzu blackberry mulberry orange waxberry quince vine marvel jackfruit
+    strawberry kale guava mandarin ugli mulberry nutmeg serene zest dragonfruit
+    jujube victoria zest kumquat hawthorn waxberry ocean xerophyte lime fig
+    cantaloupe nutmeg feijoa apple tamarillo lychee hawthorn vine tamarillo palm
+    """.split()
+    
+    remplissage = {
+        'rhubarb', 'quince', 'watermelon', 'ximenia', 'nut', 'zucchini', 'blackberry', 'vine', 'cranberry',
+        'durian', 'papaya', 'huckleberry', 'jujube', 'xerophyte', 'elderberry', 'tangerine', 'satsuma',
+        'kiwi', 'victoria', 'lime', 'saffron', 'ugni', 'rasp', 'kale', 'avocado', 'xigua', 'ugly',
+        'waxberry', 'eggplant', 'honeydew', 'lychee', 'dragonfruit', 'zinfandel', 'raspberry', 'guava',
+        'indian', 'fig', 'orange', 'yuzu', 'date', 'tamarind', 'yam', 'strawberry', 'hawthorn', 'apple',
+        'nectarine', 'cherry', 'fennel', 'elderflower', 'quandary', 'blueberry', 'quandong', 'zest',
+        'wildberry', 'yellow', 'apricot', 'onion', 'cantaloupe', 'nutmeg', 'persimmon', 'mandarin', 'olive',
+        'lemon', 'tamarillo', 'ugli', 'mango', 'grape', 'banana', 'jackfruit', 'gooseberry', 'vanilla',
+        'mulberry', 'kumquat', 'peach', 'feijoa'
+    }
+    
+    cles = sorted(set(ancien_message) - remplissage)
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    mapping = {cles[i]: alphabet[i] for i in range(len(cles)) if i < len(alphabet)}
+
+    return mapping
+
+def decode_message(file_path, mapping):
+    if not os.path.exists(file_path):
+        print("Le fichier n'existe pas.")
+        return
+    
+    with open(file_path, "r", encoding="utf-8") as file:
+        encoded_message = file.read().split()
+    
+    decoded_message = "".join(mapping.get(word, "") for word in encoded_message)
+    print("Message décodé :", decoded_message)
+
+
+mapping = extract_keys_and_map()
+print("clés =", mapping)
+print('\r')
+file_path = input("Entrez le chemin du fichier texte à décoder : ")
+print('\r')
+decode_message(file_path, mapping)
